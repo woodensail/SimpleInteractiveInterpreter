@@ -76,10 +76,7 @@ Interpreter.prototype.exec = function (syntaxTree, scope) {
 
         return this.exec(fun.syntaxTree, params);
     } else {
-        if (name === void 0) {
-            return syntaxTree
-        }
-        return this.extractValue(name, scope);
+        return this.extractValue(syntaxTree, scope);
     }
 };
 Interpreter.prototype.input = function (expr) {
