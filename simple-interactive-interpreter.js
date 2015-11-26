@@ -41,21 +41,17 @@ Interpreter.prototype.tokenize = function (program) {
 };
 Interpreter.prototype.extractValue = function (key, scope) {
     scope = scope || {};
-    if (this.functions[key]) {
-        return this.exec(this.functions[key].syntaxTree)
-    } else {
-        var value = scope[key];
-        if (value === void 0) {
-            value = this.vars[key];
-        }
-        if (value === void 0) {
-            value = key;
-        }
-        if ('number' === typeof value) {
-            return value;
-        }
-        throw 'nonexistent var';
+    var value = scope[key];
+    if (value === void 0) {
+        value = this.vars[key];
     }
+    if (value === void 0) {
+        value = key;
+    }
+    if ('number' === typeof value) {
+        return value;
+    }
+    throw 'nonexistent var';
 };
 Interpreter.prototype.exec = function (syntaxTree, scope) {
     scope = scope || {};
